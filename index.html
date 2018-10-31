@@ -6,11 +6,7 @@
   <link data-require="bootstrap@4.1.1" data-semver="4.1.1" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="style.css" />
 
-  <script src="highlight.pack.js"></script>  
 
-
-  <link rel="stylesheet" href="theme/default.css" />
-  <script src="debounce.js"></script>
   <script src="script.js"></script>
 
 
@@ -21,17 +17,13 @@
     <div class="row">
       <div class="col-9">
         <div class="form-group">
-          <label for="code">Example textarea</label>
-          <textarea class="form-control" rows="3" id="code"></textarea>
+          <label for="code">Paste url here</label>
+          <textarea class="form-control" rows="3" id="url"></textarea>
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12">
         <div class="form-group">
-          <label for="language">Language</label>
-          <select class="form-control" id="language">
-            <option>java</option>
-            <option>js</option>
-          </select>
+          <button class="btn btn-success" onclick="get()">Get</button>
         </div>
         
 
@@ -39,12 +31,9 @@
       </div>
 
     </div>
-   
-    <pre>
-      <code id="formattedCode" class="java">
-      
-      </code>
-    </pre>
+   Link download: <a id="download-link" target="_blank"></a>
+   <div id="frame"></div>
+   <!-- <iframe src="/zingmp3/bai-hat/Lo-Thuong-Mot-Nguoi-Nguyen-Dinh-Vu/ZW9CC7O6.html"></iframe> -->
 
 
   </div>

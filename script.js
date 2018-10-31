@@ -1,63 +1,23 @@
-// Code goes here
-$(function() {
+function get(){
+  var url = $("#url").val();
+  var location = getLocation(url);
+  $.ajax("/zingmp3"+location.pathname).done(function(value){
+    var parsed = $('<div/>').append(value);
 
-  $('#code').on('keyup', function() {
-    $("#formattedCode").html($(this).val())
-    runHightlight();
-  });
-  enableTabTextArea();
-
-  $("#language").on("change",function(){
-    $("#formattedCode").removeClass();
-    $("#formattedCode").addClass($(this).val())
-    runHightlight();
-
-  })
-
-
-  $("#language").val($("#language option:first").val());
-
-
-})
-function runHightlight(){
-  setTimeout(function(){
-    hljs.highlightBlock($("#formattedCode")[0]);
-
-  },1000)
+    var urlInfo = parsed.find("#zplayerjs-wrapper").attr("data-xml");
+    $.ajax("/zingmp3/xhr"+urlInfo).done(function(info){
+      $("#download-link").attr("href",info.data.source['128'])
+      $("#download-link").text(info.data.source['128'])
+    })
+  }) 
 }
-alert("cho hung")
-function copyToClipboard(str) {
-  var el = document.createElement('textarea');
-  el.value = str;
-  el.setAttribute('readonly', '');
-  el.style.position = 'absolute';
-  el.style.left = '-9999px';
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
+
+var getLocation = function(href) {
+  var l = document.createElement("a");
+  l.href = href;
+  return l;
 };
-function enableTabTextArea(){
-  $("textarea").keydown(function(e) {
-    if(e.keyCode === 9) { // tab was pressed
-        // get caret position/selection
-        var start = this.selectionStart;
-            end = this.selectionEnd;
-  
-        var $this = $(this);
-  
-        // set textarea value to: text before caret + tab + text after caret
-        $this.val($this.val().substring(0, start)
-                    + "\t"
-                    + $this.val().substring(end));
-  
-        // put caret at right position again
-        this.selectionStart = this.selectionEnd = start + 1;
-  
-        // prevent the focus lose
-        return false;
-    }
-  });
-}
-
-
+$(function(){
+  $("#url").val('https://mp3.zing.vn/bai-hat/Dung-Quen-Ten-Anh-Hoa-Vinh/ZW9C8FDB.html')
+})
+// var l = getLocation("http://example.com/path");
