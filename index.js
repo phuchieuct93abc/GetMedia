@@ -5,7 +5,7 @@ var proxy = require('http-proxy-middleware');
 
 express()
   .use(express.static(path.join(__dirname, '')))
-  .use('/zingmp3', proxy({target: 'https://mp3.zing.vn', changeOrigin: true, pathRewrite: {
+  .use('/zingmp3', proxy({target: 'https://mp3.zing.vn', changeOrigin: false, pathRewrite: {
     '^/zingmp3' : '/',     // rewrite path
 },}))
   .get('/', (req, res) => res.render('index'))
