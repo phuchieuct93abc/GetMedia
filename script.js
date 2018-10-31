@@ -2,7 +2,7 @@ function get(){
   var url = $("#url").val();
   var location = getLocation(url);
   $.ajax("/zingmp3"+location.pathname).done(function(value){
-    var parsed = $('<div/>').append(value);
+    var parsed = $('#frame').append(value);
 
     var urlInfo = parsed.find("#zplayerjs-wrapper").attr("data-xml");
     $.ajax("/zingmp3/xhr"+urlInfo).done(function(info){
