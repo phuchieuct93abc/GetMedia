@@ -8,6 +8,8 @@ function get(){
     $.ajax("/zingmp3/xhr"+urlInfo).done(function(info){
       $("#download-link").attr("href","https:"+info.data.source['128'])
       $("#download-link").text("https:"+info.data.source['128'])
+      $("#audioSrc").attr("src","https:"+info.data.source['128']);
+      $("#player")[0].load()
     })
   }) 
 }
