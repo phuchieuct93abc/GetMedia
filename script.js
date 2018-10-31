@@ -6,8 +6,8 @@ function get(){
 
     var urlInfo = parsed.find("#zplayerjs-wrapper").attr("data-xml");
     $.ajax("/zingmp3/xhr"+urlInfo).done(function(info){
-      $("#download-link").attr("href",info.data.source['128'])
-      $("#download-link").text(info.data.source['128'])
+      $("#download-link").attr("href","https:"+info.data.source['128'])
+      $("#download-link").text("https:"+info.data.source['128'])
     })
   }) 
 }
